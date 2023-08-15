@@ -1,0 +1,8 @@
+-------- Section 1 Notes ----------
+- Angular uses node js
+- node js (write the server and runs the server)
+- node js (business logic)
+- node js (responses)
+------- Executing Node Code --------
+- REPL read, eval, print, loop
+- use repl if you just type node
