@@ -52,12 +52,62 @@
 // console.log(...hobbies)
 
 // ============= Video 18 Spread and Rest Operators ============//
-const hobbies = ['Sports','Cooking','Singing'];
-const copiedArray = hobbies.slice(); // copies an array
-console.log(copiedArray);
+// const hobbies = ['Sports','Cooking','Singing'];
+// const copiedArray = hobbies.slice(); // copies an array
+// console.log(copiedArray);
 
-const toArray = function(...args){
-    return args;
-}
+// const toArray = function(...args){
+//     return args;
+// }
 
-console.log(toArray(2,3,4,5,6,7));
+// console.log(toArray(2,3,4,5,6,7));
+
+// ============= Video 19 Destructuring ============//
+
+// const person = {
+//         myName:'Aaron',
+//         myAge:'29',
+//         greet: function() {
+//             console.log(`Hi my name is ${this.name}`)
+//         }
+//     }
+
+// const printName = ({ name }) => { // destructured code
+//     console.log(name);
+// }
+
+// printName(person) 
+
+// const {myName,myAge} = person;
+// console.log(myName,myAge);
+
+// const hobbies = ['Skating','Sky-diving']
+// const [hobby1,hobby2] = hobbies
+// console.log(hobby1,hobby2)
+
+// ============= Video 20 Async Code ============//
+const fetchData = () => {
+    const promise = new Promise((resolve,reject) => {
+        setTimeout(() => { 
+            resolve('Fourth!'); // fourth
+        }, 1500);
+    });
+    return promise; // synchronous code that gets executed before other stuff
+};
+
+const printDone = (str) => console.log(str);
+
+setTimeout(() => {
+    console.log('third') //third
+    fetchData().then(text => {
+        console.log(text)
+        return text
+    }).then(text1 => {
+        console.log(text1)
+    });
+},1) // async code does not execute immediately
+
+console.log('first');
+console.log('second');
+
+
