@@ -18,3 +18,11 @@
 - 4. Check (execute setImmediate() callbacks) - similar to setTimeout but after the open callbacks finished in iteration
 - 5. Close callbacks (execute all close event callbacks)
 - 6. process.exit refs == 0, every new event listener increments count by one.
+
+-- npm install <package name> --save-dev for development dependencies or --save for prod dependencies
+-- npm install will pick up packages
+-- npm start
+-- Run -> Start Debugger
+-- Can add watcher to track specific variables throughout the process
+-- Can run code at the bottom of the screen and it won't impact the code you're working with
+-- Can manipulate the values in the debugger to actually change code - Video 55
