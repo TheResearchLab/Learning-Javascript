@@ -1,6 +1,14 @@
 // ============= Section 4 ============//
 // importing modules
 const express = require('express');
+const bodyParser = require('body-parser');
+
+// my own module
+const adminRoutes = require('./routes/admin');
+const shopRoutes = require('./routes/shop');
+
+
+
 
 const app = express();
 
@@ -9,24 +17,17 @@ const app = express();
 //     next(); // next travels to the next middleware line
 // });// use allows us to use a new middleware function
 
+app.use(bodyParser.urlencoded({extended: false})); // this does body parsing sent through a form 
 
-app.use('/',(req,res,next)=>{
-    console.log('This always runs')
-    next();
-});
+app.use('/admin',adminRoutes);
+
+app.use(shopRoutes);
 
 
-app.use('/add-product',(req,res,next)=>{
-    console.log('In another middleware')
-    res.send('<h1>Hello from Express</h1>');
-});
-
-// every request has slash
-app.use('/',(req,res,next)=>{
-    console.log('In another middleware')
-    res.send('<h1>Hello from Express</h1>');
-});
-
+// catch all route
+app.use('/',(req,res,next) => {
+    res.status(404).send('<h1>Page not found :( </h1>');
+})
 
 // const server = http.createServer(app);
 // server.listen(3000); 

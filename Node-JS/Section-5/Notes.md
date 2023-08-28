@@ -12,3 +12,17 @@
 - express automatically sets the content-type to text-html, can still setHeader but can also rely on default 
 
 ------ Express JS Behind the scenes ----------
+
+------ Parsing Incoming Request ----------
+- use body-parser package to parse incoming data in one line.
+- 
+
+------ Limiting Middleware Execution to POST Requests ----------
+- app.get & app.post to only handle get and post request 
+
+------ Using Express Router ----------
+- app.get and post look for exact route matches so order doesn't matter unlike when you do use.
+
+------ Adding 404 ----------
+- response has method status to give status. Convienvce Method
+
