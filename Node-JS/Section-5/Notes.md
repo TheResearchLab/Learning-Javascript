@@ -26,3 +26,6 @@
 ------ Adding 404 ----------
 - response has method status to give status. Convienvce Method
 
+------ Serving Html ----------
+- path core library
+- add views to view folder to serve simple html for sample routes
