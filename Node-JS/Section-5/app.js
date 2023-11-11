@@ -8,7 +8,7 @@ const path = require('path');
 const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
 
-
+const rootDir = require('./util/path')
 
 
 const app = express();
@@ -19,6 +19,7 @@ const app = express();
 // });// use allows us to use a new middleware function
 
 app.use(bodyParser.urlencoded({extended: false})); // this does body parsing sent through a form 
+app.use(express.static(path.join(rootDir,'public')));
 
 app.use('/admin',adminRoutes);
 
