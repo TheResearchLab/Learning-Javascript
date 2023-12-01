@@ -57,14 +57,56 @@ const boxes = [1,2,3,4,5];
 //         }
 //     }
 // }
-const logPairs = function(boxes) {
-    boxes.forEach(function(firstBox) {
-        boxes.forEach(function(secondBox) {
-            console.log(firstBox,secondBox);
-        })
-    })
+// const logPairs = function(boxes) {
+//     boxes.forEach(function(firstBox) {
+//         boxes.forEach(function(secondBox) {
+//             console.log(firstBox,secondBox);
+//         })
+//     })
+// }
+
+
+
+// logPairs(boxes)
+
+
+
+// Big O Rule #4 remove non dominants
+
+// function printAllNumbersThenAllPairsSums(numbers) {
+//     console.log('these are all the numbers');
+//     numbers.forEach(function(number) {
+//         console.log(number);
+//     })
+
+//     console.log('and these are their sums');
+//     numbers.forEach(function(firstNum){
+//         numbers.forEach(function(secondNum) {
+//             console.log(firstNum + secondNum);
+//         })
+//     })
+// }
+
+// const numArr = new Array(10).fill(Math.floor(Math.random() * 100));
+// printAllNumbersThenAllPairsSums(numArr);
+
+
+// Video 48 - Exercises space complexity
+
+function boooo(n) {
+    for (let i=0;i<n.length; i++) {
+        console.log('boooo!')
+    }
 }
 
+boooo([1,2,3,4,5]) // O(1)
 
+function arrayOfHiNTimes(n) {
+    let hiArray= [];
+    for (let i=0;i<n; i++) {
+        hiArray[i] = 'hi';
+    }
+    return hiArray;
+}
 
-logPairs(boxes)
+console.log(arrayOfHiNTimes(5)); // O(n)
