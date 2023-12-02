@@ -1,7 +1,7 @@
-// const nemo = ['nemo'];
-// const everyone = ['dory','bruce','marlin','nemo','gill','bloat','nigel','squirt','darla','hank']
-// const large = new Array(10000).fill('marlin')
-// large.push('nemo')
+const nemo = ['nemo'];
+const everyone = ['dory','bruce','marlin','nemo','gill','bloat','nigel','squirt','darla','hank']
+const large = new Array(10000).fill('marlin')
+large.push('nemo')
 
 // // O(n) --> linear time
 // function findNemo(array) {
@@ -93,20 +93,50 @@ const boxes = [1,2,3,4,5];
 
 // Video 48 - Exercises space complexity
 
-function boooo(n) {
-    for (let i=0;i<n.length; i++) {
-        console.log('boooo!')
+// function boooo(n) {
+//     for (let i=0;i<n.length; i++) {
+//         console.log('boooo!')
+//     }
+// }
+
+// boooo([1,2,3,4,5]) // O(1)
+
+// function arrayOfHiNTimes(n) {
+//     let hiArray= [];
+//     for (let i=0;i<n; i++) {
+//         hiArray[i] = 'hi';
+//     }
+//     return hiArray;
+// }
+
+// console.log(arrayOfHiNTimes(5)); // O(n)
+
+// Video 49 - Twitter Exercise
+
+// // find the first, find the nth
+// const array = [{
+//     tweet:'hi',
+//     date:2012
+//     },{
+//     tweet:'jello',
+//     date:2013
+//     },{
+//     tweet:'haha',
+//     date:2014}];
+// // O(n^2);
+
+
+// Video 50 - Javascript loops
+
+const findNemo2 = array => {
+    for (let fish of array) {
+        if(fish === 'nemo') {
+            console.log('found nemo!');
+        }
     }
 }
 
-boooo([1,2,3,4,5]) // O(1)
+findNemo2(large)
 
-function arrayOfHiNTimes(n) {
-    let hiArray= [];
-    for (let i=0;i<n; i++) {
-        hiArray[i] = 'hi';
-    }
-    return hiArray;
-}
 
-console.log(arrayOfHiNTimes(5)); // O(n)
+
