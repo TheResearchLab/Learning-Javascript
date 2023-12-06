@@ -122,14 +122,77 @@
 // arr1.shiftItems(1);
 
 // Video 72 - Exercise reverse a string
-function reverse(str) {
-   let reversedString = '';
-    for (let i=str.length-1; i>=0;i--) {
-        reversedString += str[i]
+// function reverse(str) {
+//    let reversedString = '';
+//     for (let i=str.length-1; i>=0;i--) {
+//         reversedString += str[i]
+//    }
+//    return reversedString
+// }
+
+
+// // Video 73 - Reverse A String
+// function reverse(str) {
+//    let reversedString = '';
+   
+//    //check input
+//    if(!str || str.length < 2 || typeof str !== 'string') {
+//       return 'bad input'
+//    }
+//    // reverse the string 
+//    for (let i=str.length-1; i>=0;i--) {
+//       reversedString += str[i]
+//    }
+//    return reversedString
+// }
+
+
+// console.log(reverse('racecar racecar racecar'));
+
+// function reverse2(str) {
+//    return str.split('').reverse().join('');
+// }
+
+// console.log(reverse2('racecar racecar racecar'));
+
+// const reverse3 = str => str.split('').reverse().join('');
+
+// Video 74 - Merge Sorted Arrays
+
+// assuming data inputs are always arrays and always sorted
+// assuming arrays always contain integers
+// assuming func will only receive two arrays 
+// assuming values should be sorted in ascending order
+
+// function mergeSortedArrays(a,b) {
+//    // sort the arrays
+//    sortedArr = [...a,...b].sort();
+//    return sortedArr
+// }
+
+// console.log(mergeSortedArrays([1,4,5],[2,4,6]));
+
+// Video 75 - Solution to merged arrays 
+
+function mergeSortedArrays2(a,b) {
+   const mergedArr = [];
+   let arr1Item = a[0];
+   let arr2Item = b[0];
+
+   i= 1;
+   j= 1;
+   while (arr1Item || arr2Item) {
+      if(!arr2Item || arr1Item < arr2Item) {
+         mergedArr.push(arr1Item);
+         arr1Item = a[i];
+         i++;
+      } else {
+         mergedArr.push(arr2Item);
+         arr2Item = b[j];
+         j++;
+      }
    }
-   return reversedString
+   return mergedArr;
 }
 
-console.log(reverse('racecar'));
-
-
+console.log(mergeSortedArrays2([1,2,5],[3,6,7]))
