@@ -12,6 +12,13 @@
 
 // Video 98 - Append List
 
+class Node {
+    constructor(value) {
+        this.value = value;
+        this.next = null;
+    }
+}
+
 class LinkedList {
     constructor(value) {
         this.head = {
@@ -23,24 +30,60 @@ class LinkedList {
     }
     append(value) {
         //  create new node
-        const newNode = {
-            value: value,
-            next: null
-        };
+        const newNode = new Node(value);
         this.tail.next = newNode;
         this.tail = newNode;
         this.length++;
         return this
     }
     prepend(value){
-        const newNode = {
-            value: value,
-            next: this.head
-        };
+        const newNode = new Node(value);
+        newNode.next = this.head;
         this.head = newNode;
         this.length++;
         return this;
+    }
+    printList() {
+        const array = [];
+        let currentNode = this.head;
+        while(currentNode !== null) {
+            array.push(currentNode.value);
+            currentNode = currentNode.next;
+        }
+        return array
+    } 
 
+    traverseToIndex(index,currentNode) {
+        let i = 0;
+        while(i < index-1) {
+            currentNode = currentNode.next;
+            i++;  
+        }
+        return currentNode;
+    }
+
+    insert(index,value) {
+        let currentNode = this.head;
+        let newNode = new Node(value);
+       
+        if(index>=this.length) {
+            this.append(value);
+            return this.printList();
+        }
+        // handle the case were index equals 0
+        if(index===0) {
+            this.prepend(value);
+            return this.printList();
+        }
+
+        // find value at index location
+        currentNode = this.traverseToIndex(index,currentNode);
+        newNode.next = currentNode.next 
+        currentNode.next = newNode;
+        this.length++;
+
+        return this.printList();
+       
     }
 }
 
@@ -51,3 +94,6 @@ console.log(myLinkedList);
 myLinkedList.prepend(1);
 myLinkedList.prepend(24);
 console.log(myLinkedList);
+console.log(myLinkedList.printList());
+console.log(myLinkedList.insert(2,100));
+
