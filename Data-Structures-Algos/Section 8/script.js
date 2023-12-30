@@ -16,6 +16,7 @@ class Node {
     constructor(value) {
         this.value = value;
         this.next = null;
+        this.prev = null;
     }
 }
 
@@ -23,7 +24,8 @@ class LinkedList {
     constructor(value) {
         this.head = {
             value: value,
-            next: null
+            next: null,
+            prev: null
         }
         this.tail = this.head;
         this.length =1;
@@ -32,6 +34,7 @@ class LinkedList {
         //  create new node
         const newNode = new Node(value);
         this.tail.next = newNode;
+        newNode.prev = this.tail 
         this.tail = newNode;
         this.length++;
         return this
@@ -39,6 +42,7 @@ class LinkedList {
     prepend(value){
         const newNode = new Node(value);
         newNode.next = this.head;
+        this.head.prev = newNode;
         this.head = newNode;
         this.length++;
         return this;
@@ -79,21 +83,62 @@ class LinkedList {
         // find value at index location
         currentNode = this.traverseToIndex(index,currentNode);
         newNode.next = currentNode.next 
+        newNode.prev = currentNode;
         currentNode.next = newNode;
         this.length++;
 
         return this.printList();
        
     }
+
+    remove(index) {
+        // if this index doesn't exist return a warning
+        if(index > this.length-1) {
+            return console.log(`Please enter a valid index. Max index = ${this.length}`);
+        }
+        // traverse to the index position and grab value
+        let currentNode = this.traverseToIndex(index,this.head);
+        
+         // if this is the first node then reset head to second to next value
+        if(index===0) {
+            this.head = this.head.next;
+            this.length--;
+            return this.printList();
+        }
+       
+        // if this is the last node then just reset tail to the value before last index
+        if(currentNode.next === this.tail) {
+            currentNode.next = null;
+            this.tail = currentNode;
+            this.length--;
+            return this.printList()
+        }
+       
+        // else rearrange the values around the index being removed
+        currentNode.next = currentNode.next.next;
+        //currentNode.prev = currentNode.prev.prev;
+        this.length--;
+        return this.printList();
+        
+    }
 }
 
 const myLinkedList = new LinkedList(10);
 myLinkedList.append(6);
 myLinkedList.append(15);
-console.log(myLinkedList);
 myLinkedList.prepend(1);
-myLinkedList.prepend(24);
-console.log(myLinkedList);
-console.log(myLinkedList.printList());
-console.log(myLinkedList.insert(2,100));
+myLinkedList.prepend(5);
+myLinkedList.insert(3,100);
+myLinkedList.insert(2,45);
+// console.log(myLinkedList);
+// myLinkedList.prepend(1);
+// myLinkedList.prepend(24);
+// console.log(myLinkedList);
+// console.log(myLinkedList.printList());
+// console.log(myLinkedList.insert(3,100));
+console.log(myLinkedList.printList())
+console.log(myLinkedList.remove(0));
+console.log(myLinkedList.remove(2));
+console.log(myLinkedList.remove(1));
+console.log(myLinkedList.remove(1));
 
