@@ -20,7 +20,7 @@ class Node {
     }
 }
 
-class LinkedList {
+class DoublyLinkedList {
     constructor(value) {
         this.head = {
             value: value,
@@ -34,7 +34,7 @@ class LinkedList {
         //  create new node
         const newNode = new Node(value);
         this.tail.next = newNode;
-        newNode.prev = this.tail 
+        newNode.prev = this.tail; 
         this.tail = newNode;
         this.length++;
         return this
@@ -121,24 +121,104 @@ class LinkedList {
         return this.printList();
         
     }
+  
 }
 
-const myLinkedList = new LinkedList(10);
-myLinkedList.append(6);
-myLinkedList.append(15);
+const myLinkedList = new DoublyLinkedList(10);
+myLinkedList.append(5);
+myLinkedList.append(16);
 myLinkedList.prepend(1);
-myLinkedList.prepend(5);
-myLinkedList.insert(3,100);
-myLinkedList.insert(2,45);
-// console.log(myLinkedList);
-// myLinkedList.prepend(1);
-// myLinkedList.prepend(24);
-// console.log(myLinkedList);
-// console.log(myLinkedList.printList());
-// console.log(myLinkedList.insert(3,100));
-console.log(myLinkedList.printList())
-console.log(myLinkedList.remove(0));
-console.log(myLinkedList.remove(2));
-console.log(myLinkedList.remove(1));
-console.log(myLinkedList.remove(1));
+console.log(myLinkedList.insert(1,99));
 
+// Video 110 Reverse Singly Linked List
+
+class LinkedList {
+    constructor(value) {
+        this.head = {
+            value: value,
+            next: null
+        }
+        this.tail = this.head;
+        this.length =1;
+    }
+    append(value) {
+        //  create new node
+        const newNode = new Node(value);
+        this.tail.next = newNode;
+        this.tail = newNode;
+        this.length++;
+        return this
+    }
+    prepend(value){
+        const newNode = new Node(value);
+        newNode.next = this.head;
+        this.head = newNode;
+        this.length++;
+        return this;
+    }
+    printList() {
+        const array = [];
+        let currentNode = this.head;
+        while(currentNode !== null) {
+            array.push(currentNode.value);
+            currentNode = currentNode.next;
+        }
+        return array
+    } 
+
+    traverseToIndex(index,currentNode) {
+        let i = 0;
+        while(i < index-1) {
+            currentNode = currentNode.next;
+            i++;  
+        }
+        return currentNode;
+    }
+
+    insert(index,value) {
+        let currentNode = this.head;
+        let newNode = new Node(value);
+       
+        if(index>=this.length) {
+            this.append(value);
+            return this.printList();
+        }
+        // handle the case were index equals 0
+        if(index===0) {
+            this.prepend(value);
+            return this.printList();
+        }
+
+        // find value at index location
+        currentNode = this.traverseToIndex(index,currentNode);
+        newNode.next = currentNode.next 
+        currentNode.next = newNode;
+        this.length++;
+
+        return this.printList();
+       
+    }
+    reverse() {
+        if(this.length===1) {
+            return this
+        }
+
+        let first = this.head;
+        this.tail = this.head;
+        let second = first.next;
+        while(second) {
+            const temp = second.next;
+            second.next = first;
+            first = second;
+            second = temp; 
+        }
+        this.head.next = null;
+        this.head = first;
+        return this.printList();
+    }
+}
+
+const myLL = new LinkedList(10);
+myLL.append(5);
+console.log(myLL.append(16));
+console.log(myLL.reverse());
