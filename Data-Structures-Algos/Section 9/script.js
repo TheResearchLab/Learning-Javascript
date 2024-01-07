@@ -21,50 +21,70 @@
 
 //  foo();
 
- console.log('1');
- setTimeout(() => {
-    console.log('2');
- }, 2000); // timeout in milliseconds
-console.log('3');
+//  console.log('1');
+//  setTimeout(() => {
+//     console.log('2');
+//  }, 2000); // timeout in milliseconds
+// console.log('3');
 
 
 // Video 120 Linked List Stack Implementation
 
 class Node {
     constructor(value) {
-        first = value;
-        next = null;
+        this.first = value;
+        this.next = null;
     }
 }
 
 class Stack {
-    contructor() {
+    constructor() {
         this.top = null;
         this.bottom = null;
-        this.length =0;
+        this.length = 0;
     }
 peek() {
     return this.top
 }
-push(node) {
-    // check length
+push(value) {
+    const newNode = new Node(value);
+    
     if(this.length === 0) {
-        this.top = node;
-        this.bottom = node;
-        this.length++;
+        this.bottom = newNode;
+        this.top = newNode;
     } else {
-        this.top.next = node;
-        this.top = node
+        const holdingPointer = this.top;
+        this.top = newNode;
+        this.top.next = holdingPointer;
     }; 
+    
+    this.length++;
     return this
 }
 pop() {
     if(this.length === 0) {
-        return this
-    } else {
-        // remove the top node
-        this.top = this.top.next;
+        return null;
+    } 
+    const holdingPointer = this.top;
+    this.top = this.top.next;
+    this.length--;
+    return this;
     }
 }
-}
 
+
+const myStack = new Stack();
+const discord = new Node('discord');
+const udemy = new Node('udemy');
+const google = new Node('google');
+
+
+
+myStack.push('discord');
+console.log(myStack.peek());
+console.log(myStack.push('udemy'));
+console.log(myStack.push('google'));
+console.log(myStack.peek());
+
+console.log(myStack.pop());
+console.log(myStack.pop());
