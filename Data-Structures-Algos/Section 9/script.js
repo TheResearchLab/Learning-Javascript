@@ -32,7 +32,7 @@
 
 class Node {
     constructor(value) {
-        this.first = value;
+        this.value = value;
         this.next = null;
     }
 }
@@ -48,7 +48,6 @@ peek() {
 }
 push(value) {
     const newNode = new Node(value);
-    
     if(this.length === 0) {
         this.bottom = newNode;
         this.top = newNode;
@@ -73,18 +72,82 @@ pop() {
 }
 
 
-const myStack = new Stack();
-const discord = new Node('discord');
-const udemy = new Node('udemy');
-const google = new Node('google');
+// const myStack = new Stack();
+// console.log(myStack.peek());
+// console.log(myStack.push('discord'));
+// console.log(myStack.push('google'));
+// console.log(myStack.push('ebay'));
+// console.log()
+
+class ArrayStack {
+    constructor(){
+        this.stack = new Array();
+    }
+push(value) {
+    this.stack.push(value);
+    return this.stack;
+}
+pop() {
+    if(this.stack.length === 0) {
+        return this;
+    } else {
+        this.stack.pop();
+    }
+    return this.stack;
+}
+peek() {
+    return this.stack[this.stack.length-1];
+}
+}
+
+// const arrStack = new ArrayStack();
+// console.log(arrStack.push('google'));
+// console.log(arrStack.push('imdb'));
+// console.log(arrStack.push('netflix'));
+// console.log(arrStack.peek());
+// console.log(arrStack.pop());
+// console.log(arrStack.pop());
+
+class Queue {
+    constructor(){
+        this.first = null;
+        this.last = null;
+        this.length = 0;
+    }
+enqueue(value) {
+   const newNode = new Node(value);
+   if(!this.first) {
+        this.first = newNode;
+        this.last = newNode;
+        this.length++;
+   } else {
+    this.last.next = newNode;
+    this.last = newNode;
+    this.length++;
+   }
+   return this
+}
+dequeue() {
+    if(!this.first) return null;
+    if(this.first===this.last) {
+        this.last = null;
+    }
+    this.first = this.first.next;
+    this.length--;
+    return this
+}
+}
+
+const myQueue = new Queue();
+console.log(myQueue.enqueue('Joy'));
+console.log(myQueue.dequeue())
+//myQueue.enqueue('Matt');
+//myQueue.enqueue('{Pavel');
+//console.log(myQueue.enqueue('Samir'));
 
 
 
-myStack.push('discord');
-console.log(myStack.peek());
-console.log(myStack.push('udemy'));
-console.log(myStack.push('google'));
-console.log(myStack.peek());
 
-console.log(myStack.pop());
-console.log(myStack.pop());
+
+
+
