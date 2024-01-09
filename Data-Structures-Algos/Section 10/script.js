@@ -28,39 +28,79 @@
         this.root = null;
     }
     insert(value) {
-        const newNode = new Node(value);
-        if(!this.root) {
-            this.root = newNode;
-            return this;
-        }
+       const newNode = new Node(value);
+       if(this.root===null) {
+        this.root = newNode;
+       } else {
         let currentNode = this.root;
-        if(!currentNode.left & !currentNode.right) { // if these are both null
-            currentNode.left = newNode;
-            return this;
-        } else {
-            // if current node's child on the left
-            if(currentNode.left.value > newNode.value) { // what happens when equal?
-                currentNode.right = currentNode.left;
-                currentNode.left = newNode;
-                return this
-            }
-            if(currentNode.left.value < newNode.value) { // what happens when equal? or still has missing pair?
-                currentNode.right = newNode;
-                return this
+        while(true) {
+            if(value < currentNode.value) {
+                //Left
+                if(!currentNode.left) {
+                    currentNode.left = newNode;
+                    return this;
+                }
+                currentNode = currentNode.left; // just point at the left node if a value is there 
+            } else {
+                //Right
+                if(!currentNode.right) {
+                    currentNode.right = newNode;
+                    return this;
+                }
+                currentNode = currentNode.right;
             }
         }
+       }
+        
     }
-    // lookup(value) {
+    lookup(value) {
+        // check to see if value is valid
 
-    // }
+        let currentNode = this.root
+
+        // traverse across nodes to find value
+        while(currentNode.value !== value) {
+
+            // if the value is greater than the currentNode.value, go right else go left
+            if(value > currentNode.left.value) {
+                currentNode = currentNode.right; 
+            } 
+            else if(value < currentNode.left.value) {
+                currentNode = currentNode.left;
+            } 
+            if(currentNode === null) {
+                return `no match found`
+            }
+        console.log(currentNode)
+        return currentNode
+
+
+        }
+        // if no value is found then return null
+
+    }
     //remove
  }
 
  const tree = new BinarySearchTree();
- console.log(tree.insert(9));
- console.log(tree.insert(4));
- console.log(tree.insert(6));
+ tree.insert(9);
+ tree.insert(20);
+ tree.insert(170);
+ tree.insert(15);
+ tree.insert(1);
+ 
+//  JSON.stringify(traverse(tree.root));
 
+
+ function traverse(node) {
+    const tree = { value: node.value};
+    tree.left = node.left === null ? null:traverse(node.left);
+    tree.right = node.right === null ? null:traverse(node.right);
+    console.log(tree);
+    return tree
+ }
  
  
  //JSON.stringify(traverse(tree.root))
+
+tree.lookup(9);
