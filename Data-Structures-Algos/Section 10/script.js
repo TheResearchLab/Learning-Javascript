@@ -54,29 +54,35 @@
         
     }
     lookup(value) {
-        // check to see if value is valid
-
+        
+        if(!this.root) {
+            return false;
+        }
+        
+    
+        if(!Number(value)) {
+            return null;
+        }
         let currentNode = this.root
-
-        // traverse across nodes to find value
-        while(currentNode.value !== value) {
-
-            // if the value is greater than the currentNode.value, go right else go left
-            if(value > currentNode.left.value) {
-                currentNode = currentNode.right; 
-            } 
-            else if(value < currentNode.left.value) {
-                currentNode = currentNode.left;
-            } 
+        
+        while(currentNode) {
+            
             if(currentNode === null) {
                 return `no match found`
             }
-        console.log(currentNode)
-        return currentNode
-
-
+            // if the value is greater than the currentNode.value, go right else go left
+            if(value < currentNode.left) {
+                currentNode = currentNode.left; 
+            } else if(value>currentNode.value) {
+                currentNode = currentNode.right;
+            }
+            else if(currentNode.value === value) {
+                return currentNode
+            } 
+        
         }
-        // if no value is found then return null
+
+        return false;
 
     }
     //remove
@@ -103,4 +109,5 @@
  
  //JSON.stringify(traverse(tree.root))
 
-tree.lookup(9);
+//tree.lookup(9);
+console.log(tree.lookup(20));
