@@ -150,15 +150,64 @@ class BinarySearchTree {
       }
     }
   }
+  breadthFirstSearch() {
+    let currentNode = this.root;
+    let list = [];
+    let queue = []; 
+    queue.push(currentNode);
+
+    while(queue.length > 0) {
+      currentNode = queue.shift();
+      list.push(currentNode.value);
+      if(currentNode.left) {
+        queue.push(currentNode.left);
+      }
+      if(currentNode.right) {
+        queue.push(currentNode.right);
+      }
+    }
+    return list;
+  }
+  breadthFirstSearchR(queue,list) {
+    if(!queue.length) {
+      return list;
+    }
+    console.log(queue);
+    let currentNode = queue.shift();
+    list.push(currentNode.value);
+    if(currentNode.left) {
+      queue.push(currentNode.left);
+    }
+    if(currentNode.right) {
+      queue.push(currentNode.right)
+    }
+    return this.breadthFirstSearchR(queue,list); // need to call this because javascript method calling
+  }
+
+  DFSInOrder(queue,list) {
+    return traverseInOrder(this.root,[])
+  }
+
+  DFSPreOrder(queue,list) {
+    return traversePreOrder(this.root,[])
+    
+  }
+
+  DFSPostOrder(queue,list) {
+    return traversePostOrder(this.root,[])
+  }
 }
 
 const tree = new BinarySearchTree();
 tree.insert(9);
 tree.insert(4);
+tree.insert(6);
 tree.insert(20);
 tree.insert(170);
 tree.insert(15);
 tree.insert(1);
+
+// console.log(tree)
 
 function traverse(node) {
   const tree = { value: node.value};
@@ -169,4 +218,29 @@ function traverse(node) {
 }
 
 // Breadth First Search
+//console.log(tree.breadthFirstSearch());
+console.log(tree.breadthFirstSearchR([tree.root],[])) // the this.root gets the root node for the tree object
 
+
+// Depth First Search/Traversal
+//      9 
+//   4    20
+// 1  6 15  170
+
+// Different kinds of depth first searches
+// In Order - [1,4,6,9,15,20,170]
+// Pre Order - [9,4,1,6,20,15,170]
+// Post Order - [1,6,4,15,170,20,9]
+
+function traverseInOrder(node,list) {
+  if(node.left) {
+    traverseInOrder(node.left,list);
+  }  
+  list.push(node.value)
+  if(node.right) {
+    traverseInOrder(node.right,list)
+  }
+  return list;
+}
+
+console.log(tree.DFSInOrder(tree.root,[]))
