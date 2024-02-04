@@ -219,7 +219,7 @@ function traverse(node) {
 
 // Breadth First Search
 //console.log(tree.breadthFirstSearch());
-console.log(tree.breadthFirstSearchR([tree.root],[])) // the this.root gets the root node for the tree object
+//console.log(tree.breadthFirstSearchR([tree.root],[])) // the this.root gets the root node for the tree object
 
 
 // Depth First Search/Traversal
@@ -243,4 +243,30 @@ function traverseInOrder(node,list) {
   return list;
 }
 
-console.log(tree.DFSInOrder(tree.root,[]))
+
+function traversePreOrder(node,list) {
+  list.push(node.value)
+  if(node.left) {
+    traversePreOrder(node.left,list);
+  }  
+  if(node.right) {
+    traversePreOrder(node.right,list)
+  }
+  return list;
+}
+
+
+function traversePostOrder(node,list) {
+  if(node.left) {
+    traversePostOrder(node.left,list);
+  }  
+  if(node.right) {
+    traversePostOrder(node.right,list)
+  }
+  list.push(node.value)
+  return list;
+}
+
+// console.log(tree.DFSInOrder(tree.root,[]))
+// console.log(tree.DFSPreOrder(tree.root,[]))
+console.log(tree.DFSPostOrder(tree.root,[]))
