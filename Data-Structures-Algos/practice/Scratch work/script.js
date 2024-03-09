@@ -90,4 +90,72 @@ function merge(leftArr, rightArr) {
     return result.concat(leftArr.slice(leftIndex)).concat(rightArr.slice(rightIndex));
 }
 
-console.log(mergeSort([1,3,2,7,8,3,2,1]));
+function linearSearch(arr, target) {
+    // Loop through the array
+    for (let i = 0; i < arr.length; i++) {
+      // If the current element is equal to the target, return its index
+      if (arr[i] === target) {
+        return i;
+      }
+    }
+    // If the target is not found, return -1
+    return -1;
+  }
+
+
+
+  function binarySearch(arr, target) {
+    let left = 0;
+    let right = arr.length - 1;
+  
+    while (left <= right) {
+      const mid = Math.floor((left + right) / 2);
+  
+      if (arr[mid] === target) {
+        return mid; // Target found, return its index
+      } else if (arr[mid] < target) {
+        left = mid + 1; // Target is in the right half
+      } else {
+        right = mid - 1; // Target is in the left half
+      }
+    }
+  
+    return -1; // Target not found
+  }
+
+
+  function bfs(graph, start) {
+    const visited = new Set(); // To keep track of visited vertices
+    const queue = [start]; // Initialize the queue with the starting vertex
+    const result = []; // To store the traversal order
+  
+    visited.add(start); // Mark the starting vertex as visited
+  
+    while (queue.length > 0) {
+      const currentVertex = queue.shift(); // Dequeue the current vertex
+      result.push(currentVertex); // Add the current vertex to the result
+  
+      // Visit all neighboring vertices of the current vertex
+      for (const neighbor of graph[currentVertex]) {
+        if (!visited.has(neighbor)) {
+          visited.add(neighbor); // Mark neighbor as visited
+          queue.push(neighbor); // Enqueue the neighbor
+        }
+      }
+    }
+  
+    return result;
+  }
+  
+  // Example graph representation (adjacency list)
+  const graph = {
+    A: ['B', 'C'],
+    B: ['A', 'D', 'E'],
+    C: ['A', 'F'],
+    D: ['B'],
+    E: ['B', 'F'],
+    F: ['C', 'E']
+  };
+  
+  const startVertex = 'A';
+  console.log(bfs(graph, startVertex));
