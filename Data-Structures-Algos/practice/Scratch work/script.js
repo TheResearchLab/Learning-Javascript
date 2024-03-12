@@ -147,15 +147,93 @@ function linearSearch(arr, target) {
     return result;
   }
   
-  // Example graph representation (adjacency list)
-  const graph = {
-    A: ['B', 'C'],
-    B: ['A', 'D', 'E'],
-    C: ['A', 'F'],
-    D: ['B'],
-    E: ['B', 'F'],
-    F: ['C', 'E']
-  };
+ 
+  function dfs(adjList, startNode) {
+    const visited = new Set(); // To keep track of visited vertices
+    const stack = [startNode]; // Initialize the stack with the starting vertex
+    const result = []; // To store the traversal order
   
-  const startVertex = 'A';
-  console.log(bfs(graph, startVertex));
+    visited.add(startNode); // Mark the starting vertex as visited
+  
+    while (stack.length > 0) {
+      const currentVertex = stack.pop(); // Pop the current vertex from the stack
+      result.push(currentVertex); // Add the current vertex to the result
+  
+      // Visit all neighboring vertices of the current vertex
+      for (const neighbor of adjList[currentVertex]) {
+        if (!visited.has(neighbor)) {
+          visited.add(neighbor); // Mark neighbor as visited
+          stack.push(neighbor); // Push the neighbor onto the stack
+        }
+      }
+    }
+  
+    return result;
+  }
+  
+
+  class TreeNode {
+    constructor(val) {
+      this.val = val;
+      this.left = null;
+      this.right = null;
+    }
+  }
+  
+  // Inorder Traversal
+  function inorderTraversal(root) {
+    const result = [];
+  
+    function traverse(node) {
+      if (node === null) return;
+      traverse(node.left);
+      result.push(node.val);
+      traverse(node.right);
+    }
+  
+    traverse(root);
+    return result;
+  }
+  
+  // Preorder Traversal
+  function preorderTraversal(root) {
+    const result = [];
+  
+    function traverse(node) {
+      if (node === null) return;
+      result.push(node.val);
+      traverse(node.left);
+      traverse(node.right);
+    }
+  
+    traverse(root);
+    return result;
+  }
+  
+  // Postorder Traversal
+  function postorderTraversal(root) {
+    const result = [];
+  
+    function traverse(node) {
+      if (node === null) return;
+      traverse(node.left);
+      traverse(node.right);
+      result.push(node.val);
+    }
+  
+    traverse(root);
+    return result;
+  }
+  
+  // Example Usage:
+  const root = new TreeNode(1);
+  root.left = new TreeNode(2);
+  root.right = new TreeNode(3);
+  root.left.left = new TreeNode(4);
+  root.left.right = new TreeNode(5);
+  
+  console.log("Inorder traversal:", inorderTraversal(root));
+  console.log("Preorder traversal:", preorderTraversal(root));
+  console.log("Postorder traversal:", postorderTraversal(root));
+  
+  
