@@ -17,5 +17,26 @@ var kidsWithCandies = function(candies, extraCandies) {
     return result
 };
 
-console.log(kidsWithCandies([1,100,2],3))
+//console.log(kidsWithCandies([1,100,2],3))
 
+// 605 Can Place Flowers
+var canPlaceFlowers = function(flowerbed, n) {
+    var available = 0;
+    
+    for (let i=1;i<flowerbed.length-1;i++) {
+        if (!flowerbed.slice(i-1,i+2).includes(1)) {
+            
+            available +=1
+            flowerbed[i] = 1;
+            
+            if (available === n) {
+                return true
+            }
+ 
+        }
+    }
+    return false
+
+};
+
+console.log(canPlaceFlowers([1,0,0,0,1],5))
