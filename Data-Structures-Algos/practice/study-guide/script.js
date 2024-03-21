@@ -92,9 +92,62 @@ const getValue = function(flowerbed,i) {
 }
 
 const arr4 = [1,0,1,0,1,0,1]
-console.log(flowerbed(arr4,0));
+//console.log(flowerbed(arr4,0));
 
 // PROBLEM 345 - Reverse Vowels of a String
 
 // function reverseVowels(s) 
-//  pointer to 
+//  pointer to start at far right
+//  pointer to start at far left
+
+//  expected variables list  
+
+//  if length of the array is one then just return the array
+
+//  loop through the array with the two pointers until both pointers are at the same position
+//    if the character is a vowel then stop until another vowel is found
+//    if two vowels are found, switch them -- will account for overlap case as well
+
+
+var vowelCheck = function(char,vowels) {
+  if(vowels.includes(char)) {
+    return true
+  }
+  return false
+}
+
+
+function reverseVowels(s) {
+  if(s.length==1) {
+    return s
+  }
+
+  var wordArr = s.split("")
+  
+  var left = 0;
+  var right = s.length-1;
+  var vowels = new Array('a','e','i','o','u','A','E','I','O','U');
+  
+  while(left <= right) {
+    
+    if (vowelCheck(wordArr[left],vowels) & vowelCheck(wordArr[right],vowels)) {
+      let tempVar = wordArr[left]
+      wordArr[left]  = wordArr[right]
+      wordArr[right] = tempVar
+      left++;
+      right--;
+    }
+
+    if (!vowelCheck(s[left],vowels)) left++;
+    if (!vowelCheck(s[right],vowels)) right--;
+
+    
+  }
+
+  return wordArr.join("")
+  
+}
+
+
+console.log(reverseVowels('AeaA'))
+
