@@ -149,5 +149,25 @@ function reverseVowels(s) {
 }
 
 
-console.log(reverseVowels('AeaA'))
+//console.log(reverseVowels('AeaA'))
 
+// PROBLEM 151 - Reverse Words in a String
+
+s = 'this is a string      of words'
+
+var reverseWords = function(s) {
+  s = s.split(' ').filter(function(string) { return string !== ''}).reverse().join(' ')
+  return s
+} 
+
+console.log(reverseWords('h1 my    name is     paul'))
+
+
+// PROBLEM 238 - Product of Array Except Self
+
+i = 2
+arr = [1,2,3,4]
+output = []
+
+console.log(arr.slice(i,4))
+console.log(arr.slice(0,i-1))
