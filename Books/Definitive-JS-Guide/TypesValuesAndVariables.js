@@ -45,3 +45,34 @@ let euro = "€";
 let love = "❤️"; // two 16 bit values represents one js string value
 console.log(`Euro length: ${euro.length}, Love length: ${love.length}`)
 
+// literals
+
+let singleLine = "this \
+will \
+print \
+on the \
+same line"
+
+console.log(singleLine)
+
+
+let s = "Hello World"
+s.length 
+
+// taking portions of a string
+s.substring(1,4)
+s.slice(-3)
+s.split(", ") // ["Hello", "World"]
+
+// searching a string
+s.indexOf("l")
+s.indexOf("l",3) // find the l after at or after the 3rd index 
+console.log(s.indexOf('zz')) // if doesn't exist in string then return -1 which is helpful for boolean
+console.log(s.indexOf('He')) // can search for multiple characters at once
+
+// Boolean searching functions
+s.startsWith("Hello") 
+s.endsWith("!")
+s.includes("you") 
+
+//
