@@ -136,8 +136,37 @@ if (!"value") { // evals for any falsy
 }
 
 
+// undefined and null 
+console.log(null == undefined)
+console.log(null === undefined)
+console.log(typeof(null))
+console.log(typeof(undefined))
 
+// symbols 
+let str = Symbol("sym_x")
+console.log(str.toString('abc'))
+console.log(str.toString('abc'));
+let st = Symbol.for("shared");
+let t = Symbol.for("shared")
+console.log(t===st)
+console.log(st.toString())
+console.log(Symbol.keyFor(t))
 
+// object comparisons
+
+let o = {x:3}
+let p = {x:3}
+
+console.log(p===o) // false, not the same reference object
+
+let arr1 = [0,1,2,3]
+let arr2 = arr1 
+
+console.log(arr1 === arr2); // true 
+
+// creating array copy
+let arr3 = Array.from(arr2)
+console.log(arr3===arr2) // false, this is a copy
 
 
 
