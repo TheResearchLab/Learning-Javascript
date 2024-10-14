@@ -169,4 +169,20 @@ let arr3 = Array.from(arr2)
 console.log(arr3===arr2) // false, this is a copy
 
 
+// TYPE CONVERSIONS
+console.log("Type Conversions\n")
+console.log(10 + " objects")
+console.log("7" * "4")
+let n = 1 - "x"
+console.log(n+" objects")
+
+console.log(true.toString())
+
+// Flexible equality operator
+console.log(null == undefined);
+console.log("0" == 0);
+console.log(0 == false);
+console.log("0" == false);
+
+
 
