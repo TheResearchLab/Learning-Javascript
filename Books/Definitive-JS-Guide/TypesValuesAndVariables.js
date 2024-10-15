@@ -173,8 +173,8 @@ console.log(arr3===arr2) // false, this is a copy
 console.log("Type Conversions\n")
 console.log(10 + " objects")
 console.log("7" * "4")
-let n = 1 - "x"
-console.log(n+" objects")
+//let n = 1 - "x";
+//console.log(n+" objects")
 
 console.log(true.toString())
 
@@ -185,4 +185,31 @@ console.log(0 == false);
 console.log("0" == false);
 
 
+// Explicit type conversion
+console.log("\nExplicit type conversions\n" + String(true))
+console.log(Boolean([]))
+console.log(Number("3"));
 
+console.log("\nThe weird stuff");
+let x = "0";
+let y = 4;
+console.log(y + ""); // x to a string 
+console.log(+x); // x to a number
+console.log(!y) // y to a boolean and negate 
+console.log(!!+x) // convert x to an number then number to boolean and double negate
+
+// To String Method defined in the Number class
+// let n = 17;
+// let binary = "0b" + n.toString(2);
+// let octal = "0o" + n.toString(8);
+// let hex = "0x" + n.toString(16);
+
+//
+let n = 123456.789;
+console.log(n.toFixed(0)); // fixed number of digits after the decimal, never in exponential notation
+console.log(n.toExponential(1)); // fixed number of digits after the decimal w/ exp notation
+console.log(n.toExponential(3)); 
+console.log(n.toPrecision(4)); // converts number to a string, uses exp notation and zero padding as needed 
+console.log(n.toPrecision(10));
+
+// ParseInt & ParseFloat Global Functions
